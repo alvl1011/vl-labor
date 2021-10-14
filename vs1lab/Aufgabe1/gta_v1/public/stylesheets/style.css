@@ -46,7 +46,9 @@ a {
 
 /* ### TODO ### Styles for other HTML elements */
 
-/* ... your code here ... */
+form {
+  display: flex;
+}
 
 
 /* Grid styles (no changes required) */
@@ -109,7 +111,34 @@ a {
 
 /* ### TODO ### Styles for Header Component */
 
-/* ... your code here ... */
+.header {
+  display: flex;
+  justify-content: space-around;
+  background-color: var(--background-color);
+  flex: 1 100%;
+  align-items: baseline;
+  border: 2px solid lightgray;
+}
+
+.header__image {
+  order: 1;
+  margin: auto;
+  height: 50px;
+  width: 50px;
+  flex-basis: auto;
+  padding: 5px;
+}
+
+.header__title {
+  order: 2;
+  font-variant: small-caps;
+  margin: auto;
+}
+
+.header__navigation {
+  order: 3;
+  margin: auto;
+}
 
 
 /* ### TODO ### Styles for Main Component */
