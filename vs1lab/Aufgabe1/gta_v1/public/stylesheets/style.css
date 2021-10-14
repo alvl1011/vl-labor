@@ -117,7 +117,7 @@ form {
   background-color: var(--background-color);
   flex: 1 100%;
   align-items: baseline;
-  border: 2px solid lightgray;
+  border: 1px solid var(--border-color);
 }
 
 .header__image {
@@ -125,7 +125,6 @@ form {
   margin: auto;
   height: 50px;
   width: 50px;
-  flex-basis: auto;
   padding: 5px;
 }
 
@@ -158,7 +157,18 @@ form {
 
 /* ### TODO ### Styles for Footer Component */
 
-/* ... your code here ... */
+.footer {
+  display: flex;
+  justify-content: flex-start;
+  background-color: var(--background-color);
+  flex: 1 100%;
+  border: 1px solid var(--border-color);
+}
+footer.footer span {
+  order: 1;
+  align-self: center;
+  font-weight: bold;
+}
 
 
 /* ### TODO ### Media Queries */
