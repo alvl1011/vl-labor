@@ -139,20 +139,72 @@ form {
   margin: auto;
 }
 
-
+#legend {
+  font-weight: bold;
+  font-size: small;
+}
 /* ### TODO ### Styles for Main Component */
 
-/* ... your code here ... */
+.main {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
 
 
 /* ### TODO ### Styles for Tagging component */
 
-/* ... your code here ... */
+#tag-form {
+  display:  flex;
+  justify-content: left;
+  padding: 10px;
+}
+
+#tag-form fieldset {
+  border-style: solid;
+  border-color: var(--border-color);
+  color:  black;
+  border-width: 1px;
+  height: 300px;
+  width: 200px;
+  margin: auto;
+  padding: 10px;
+  line-height: 1.8;
+  flex-direction: column;
+}
+
+label {
+  color: var(--gray-color);
+}
 
 
 /* ### TODO ### Styles for Discovery component */
 
-/* ... your code here ... */
+.main_discovery {
+  display: flex;
+  justify-content: right;
+}
+
+button {
+  text-align: center;
+  font-weight: bold;
+  padding: 5px;
+  position: relative;
+  top: 15px;
+  width: 168px;
+}
+
+input {
+  padding: 5px;
+  position: relative;
+  width: 168px;
+}
+
+.num_field {
+  background-color: var(--background-color);
+  border-style: solid;
+  border-width: 1px;
+}
 
 
 /* ### TODO ### Styles for Footer Component */
@@ -174,3 +226,7 @@ footer.footer span {
 /* ### TODO ### Media Queries */
 
 /* ... your code here ... */
+
+li {
+  list-style-type: none;
+}

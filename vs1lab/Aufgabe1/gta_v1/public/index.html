@@ -27,18 +27,25 @@
 
             <!-- ############### VS1Lab 1a Form 1 Start -->
             <form id="tag-form" action="/tagging" method="post">
-            <legend>Add a new GeoTag</legend>
-              <ul >
-
-                <li>Latitude: <br><input type="value" placeholder="49.01379"></li>
-                <li>Longitude: <br><input type="value" placeholder="8.39400"></li>
-                <li>Name: <br><input type="name" placeholder="e.g Central Berlin"></li>
-                <li>Hashtag: <br><input type="hashtag" placeholder="e.g #ber"></li>
-
-
-
-              </ul>
-              <button >Add Tag</button>
+                <fieldset>
+                    <legend id="legend">Add a new GeoTag</legend>
+                        <ul >
+                            <li><label for="lat">Latitude:</label>
+                                <input id="lat" class="num_field" type="number" placeholder="49.01379">
+                            </li>
+                            <li><label for="lon">Longitude:</label>
+                                <input id="lon" class="num_field" type="number" placeholder="8.390071">
+                            </li>
+                            <li><label for="name">Name:</label>
+                                <input id="name" type="name" placeholder="e.g. Central Berlin">
+                            </li>
+                            <li><label for="hash">Hashtag:</label>
+                                <input id="hash" type="value" placeholder="e.g. #ber">
+                            </li>
+                        </ul>
+                        <button>Add Tag</button>
+                </fieldset>
+              
                 <!-- ... your code here ... -->
 
             </form>
