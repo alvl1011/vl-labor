@@ -145,14 +145,16 @@ form {
 }
 /* ### TODO ### Styles for Main Component */
 
+
+
 .main {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   padding: 20px;
 }
 
-
-/* ### TODO ### Styles for Tagging component */
+/* Styles for Tagging component */
 
 #tag-form {
   display:  flex;
@@ -165,7 +167,7 @@ form {
   border-color: var(--border-color);
   color:  black;
   border-width: 1px;
-  height: 300px;
+  height: 350px;
   width: 200px;
   margin: auto;
   padding: 10px;
@@ -177,12 +179,50 @@ label {
   color: var(--gray-color);
 }
 
+.num_field {
+  height: 30px;
+  width: 175px;
+}
 
-/* ### TODO ### Styles for Discovery component */
+input {
+  height: 30px;
+  width: 175px;
+}
+
+/* Styles for Discovery component */
 
 .main_discovery {
   display: flex;
   justify-content: right;
+}
+
+#search {
+  width: 150px;
+  height: 30px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+#discoveryFilterForm {
+  width: 666px;
+  height: 150px;
+  margin-bottom: 20px;
+}
+
+fieldset {
+  width: 666px;
+  display: flex;
+  flex-direction: column;
+}
+
+li {
+  display: flex;
+  flex-direction: column;
+}
+
+label{
+  margin-top: 10px;
+  margin-left: 20px;
 }
 
 button {
@@ -190,14 +230,18 @@ button {
   font-weight: bold;
   padding: 5px;
   position: relative;
-  top: 15px;
-  width: 168px;
+  top: 20px;
+  width: 150px;
+  height: 30px;
+  margin-left: 20px;
 }
 
-input {
+.input {
   padding: 5px;
   position: relative;
   width: 168px;
+  height: 30px;
+  
 }
 
 .num_field {
@@ -206,8 +250,31 @@ input {
   border-width: 1px;
 }
 
+.discovery__wrapper {
+  display: flex;
+  flex-direction: row;
+}
 
-/* ### TODO ### Styles for Footer Component */
+
+.discovery__results li {
+  background-color: rgb(235, 235, 235);
+  border-style: solid;
+  border-width: 1px;
+  border-color: #666;
+  padding: 10px;
+  margin: 20px;
+  width: 225px;
+  color:blue;
+  font-size: 16px;
+}
+
+.discovery__map {
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Styles for Footer Component */
 
 .footer {
   display: flex;
@@ -223,7 +290,15 @@ footer.footer span {
 }
 
 
-/* ### TODO ### Media Queries */
+/*  Media Queries */
+
+@media screen and (min-width: 860px) {
+  .main {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+  }
+}
 
 /* ... your code here ... */
 
