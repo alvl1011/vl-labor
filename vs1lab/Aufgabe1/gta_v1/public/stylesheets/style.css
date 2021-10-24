@@ -209,10 +209,11 @@ input {
   margin-bottom: 20px;
 }
 
-fieldset {
+.discovery__search fieldset {
   width: 666px;
   display: flex;
   flex-direction: column;
+  border-width: 1px;
 }
 
 li {
