@@ -111,7 +111,7 @@ form {
 
 /* ### TODO ### Styles for Header Component */
 
-.header {
+header {
   display: flex;
   justify-content: space-around;
   background-color: var(--background-color);
@@ -139,7 +139,7 @@ form {
   margin: auto;
 }
 
-#legend {
+legend {
   font-weight: bold;
   font-size: small;
 }
@@ -147,18 +147,13 @@ form {
 
 
 
-.main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+main {
   padding: 20px;
 }
 
 /* Styles for Tagging component */
 
 #tag-form {
-  display:  flex;
-  justify-content: left;
   padding: 10px;
 }
 
@@ -167,12 +162,16 @@ form {
   border-color: var(--border-color);
   color:  black;
   border-width: 1px;
-  height: 350px;
+  height: 320px;
   width: 200px;
   margin: auto;
   padding: 10px;
   line-height: 1.8;
   flex-direction: column;
+}
+
+#tag-form button {
+  width: 180px;
 }
 
 label {
@@ -181,7 +180,11 @@ label {
 
 .num_field {
   height: 30px;
-  width: 175px;
+  width: 180px;
+}
+.field {
+  height: 30px;
+  width: 180px;
 }
 
 input {
@@ -196,54 +199,62 @@ input {
   justify-content: right;
 }
 
+
+.discovery__search {
+  display:  flex;
+  justify-content: right;
+  width: 666px;
+  height: 150px;
+  padding: 10px;
+}
+
 #search {
   width: 150px;
   height: 30px;
-  margin-left: 20px;
-  margin-top: 10px;
+  margin-left: 0px;
 }
 
-#discoveryFilterForm {
-  width: 666px;
-  height: 150px;
-  margin-bottom: 20px;
-}
 
 .discovery__search fieldset {
-  width: 666px;
-  display: flex;
+  border-style: solid;
+  border-color: var(--border-color);
+  color:  black;
+  width: 666px; 
   flex-direction: column;
   border-width: 1px;
+  padding: 10px;
 }
 
 li {
   display: flex;
   flex-direction: column;
+  list-style-type: none;
+  line-height: 1.8;
+  margin: 0;
+  padding: 0;
 }
 
-label{
-  margin-top: 10px;
-  margin-left: 20px;
+div {
+  padding: 0;
+  margin: 0;
 }
+
 
 button {
   text-align: center;
   font-weight: bold;
   padding: 5px;
   position: relative;
-  top: 20px;
+  top: 10px;
   width: 150px;
   height: 30px;
-  margin-left: 20px;
 }
 
-.input {
-  padding: 5px;
-  position: relative;
-  width: 168px;
-  height: 30px;
-  
+#mapView {
+  height: 400px;
+  width: 400px;
 }
+
 
 .num_field {
   background-color: var(--background-color);
@@ -251,10 +262,6 @@ button {
   border-width: 1px;
 }
 
-.discovery__wrapper {
-  display: flex;
-  flex-direction: row;
-}
 
 
 .discovery__results li {
@@ -267,24 +274,22 @@ button {
   width: 225px;
   color:blue;
   font-size: 16px;
+  list-style-type: none;
 }
 
-.discovery__map {
-  display: flex;
-  flex-direction: column;
-}
+
 
 
 /* Styles for Footer Component */
 
-.footer {
+footer {
   display: flex;
   justify-content: flex-start;
   background-color: var(--background-color);
   flex: 1 100%;
   border: 1px solid var(--border-color);
 }
-footer.footer span {
+footer span {
   order: 1;
   align-self: center;
   font-weight: bold;
@@ -293,16 +298,19 @@ footer.footer span {
 
 /*  Media Queries */
 
-@media screen and (min-width: 860px) {
-  .main {
+@media screen and (max-width: 860px) {
+  main {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     padding: 20px;
   }
-}
 
-/* ... your code here ... */
+  .discovery__map {
+    flex-direction: column;
+  }
 
-li {
-  list-style-type: none;
+  #mapView {
+    height: 300px;
+    width: 300px;
+  }
 }

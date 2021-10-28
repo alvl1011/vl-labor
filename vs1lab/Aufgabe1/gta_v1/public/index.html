@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <header class="header">
+    <header>
         <img src="./images/location.png" class="header__image" alt="an image of a map and location">
         <h1 class="header__title">GeoTagApp</h1>
         <nav class="header__navigation">
@@ -21,27 +21,31 @@
         </nav>
     </header>
 
-    <main class="main">
-        <section class="main__tagging tagging">
+    <main class="row">
+        <section class="main__tagging tagging col-5">
             <h2>Tagging</h2>
             <!-- ############### VS1Lab 1a Form 1 Start -->
             <form id="tag-form" action="/tagging" method="post">
 
               <!-- ... your code here ... -->
                 <fieldset>
-                    <legend id="legend">Add a new GeoTag</legend>
+                    <legend>Add a new GeoTag</legend>
                         <ul >
-                            <li><label for="lat">Latitude:</label>
-                                <input id="lat" class="num_field" type="number" placeholder="49.01379">
+                            <li><label for="lat">Latitude:</label> 
+                                <input id="lat" class="num_field" type="number" placeholder="49.01379"
+                                min="1" pattern="([1-9])*.(([1-9])\d*)" required>
                             </li>
                             <li><label for="lon">Longitude:</label>
-                                <input id="lon" class="num_field" type="number" placeholder="8.390071">
+                                <input id="lon" class="num_field" type="number" placeholder="8.390071"
+                                min="1" pattern="([1-9])*.(([1-9])\d*)" required>
                             </li>
                             <li><label for="name">Name:</label>
-                                <input id="name" type="name" placeholder="e.g. Central Berlin">
+                                <input id="name" class="field" type="name" placeholder="e.g. Central Berlin"
+                                min="2" max="10" pattern="([A-Z])\w+" required>
                             </li>
-                            <li><label for="hash">Hashtag:</label>
-                                <input id="hash" type="value" placeholder="e.g. #ber">
+                            <li><label for="hash">Hashtag (optional):</label>
+                                <input id="hash" class="field" type="value" placeholder="e.g. #ber" pattern="[#]\w+"
+                                min="2" max="10">
                             </li>
                         </ul>
                         <button>Add Tag</button>
@@ -52,17 +56,17 @@
 
         </section>
 
-        <section class="main__discovery discovery">
+        <section class="main__discovery discovery col-9">
             <h2 class="discovery__title">Discovery</h2>
 
             <!-- ############### VS1Lab 1a Form 2 Start -->
-            <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
+            <form class="discovery__search row" action="/discovery" method="post">
 
                 <!-- ... your code here ... -->
                 <fieldset>
-                  <legend id="legend" >Search</legend>
+                  <legend>Search</legend>
                       <ul>
-                        <li><label for="search">Search term or keywords:</label>
+                        <li><label for="search">Search term or keywords:</label> 
                           <input id="search" type="value" placeholder="e.g Berlin">
                         </li>
                       </ul>
@@ -72,16 +76,16 @@
             </form>
             <!-- ############### VS1Lab 1a Form 2 End -->
 
-            <div class="discovery__wrapper">
-                <div class="discovery__taglist">
-                    <ul class="discovery__results" id="discoveryResults">
+            <div class="discovery__wrapper row">
+                <div class="discovery__taglist col-5">
+                    <ul class="discovery__results">
                         <li>Castle (49.01379, 8.404435) #sight</li>
                         <li>IWI (49.01379, 8.390071) #edu</li>
                     </ul>
                 </div>
 
-                <div class="discovery__map">
-                    <img src="./images/mapview.jpg" alt="a map with locations" id="mapView" />
+                <div class="discovery__map col-9">
+                    <img src="./images/mapview.jpg" alt="a map with locations" id="mapView" /> <br>
                     <span>Result map</span>
                 </div>
             </div>
@@ -89,7 +93,7 @@
 
     </main>
 
-    <footer class="footer">
+    <footer>
         <span>(c) 2021/22 HKA_IWI_VSYS</span>
     </footer>
 </body>
