@@ -194,10 +194,7 @@ input {
 
 /* Styles for Discovery component */
 
-.main_discovery {
-  display: flex;
-  justify-content: right;
-}
+
 
 
 .discovery__search {
@@ -206,6 +203,13 @@ input {
   width: 666px;
   height: 150px;
   padding: 10px;
+}
+
+.discovery__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
 }
 
 #search {
@@ -251,6 +255,7 @@ button {
 }
 
 #mapView {
+  order: 1;
   height: 400px;
   width: 400px;
 }
@@ -298,7 +303,7 @@ footer span {
 
 /*  Media Queries */
 
-@media screen and (max-width: 860px) {
+@media screen and (max-width: 1100px) {
   main {
     display: flex;
     flex-direction: column;
@@ -313,4 +318,15 @@ footer span {
     height: 300px;
     width: 300px;
   }
+
+  .discovery__search{
+    justify-content: start;
+    width: calc(150% - 1em);
+  }
+
+  .discovery__wrapper {
+    width: 100%;
+    flex-direction: column;
+  }
+
 }

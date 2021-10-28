@@ -33,19 +33,19 @@
                         <ul >
                             <li><label for="lat">Latitude:</label> 
                                 <input id="lat" class="num_field" type="number" placeholder="49.01379"
-                                min="1" pattern="([1-9])*.(([1-9])\d*)" required>
+                                minlength="1" pattern="([1-9])*.(([1-9])\d*)" readonly>
                             </li>
                             <li><label for="lon">Longitude:</label>
                                 <input id="lon" class="num_field" type="number" placeholder="8.390071"
-                                min="1" pattern="([1-9])*.(([1-9])\d*)" required>
+                                minlength="1" pattern="([1-9])*.(([1-9])\d*)" readonly>
                             </li>
                             <li><label for="name">Name:</label>
                                 <input id="name" class="field" type="name" placeholder="e.g. Central Berlin"
-                                min="2" max="10" pattern="([A-Z])\w+" required>
+                                minlength="2" maxlength="10" pattern="([A-Z])\w+" required>
                             </li>
                             <li><label for="hash">Hashtag (optional):</label>
                                 <input id="hash" class="field" type="value" placeholder="e.g. #ber" pattern="[#]\w+"
-                                min="2" max="10">
+                                minlength="2" maxlength="11">
                             </li>
                         </ul>
                         <button>Add Tag</button>
@@ -56,11 +56,11 @@
 
         </section>
 
-        <section class="main__discovery discovery col-9">
+        <section class="main__discovery discovery col-8">
             <h2 class="discovery__title">Discovery</h2>
 
             <!-- ############### VS1Lab 1a Form 2 Start -->
-            <form class="discovery__search row" action="/discovery" method="post">
+            <form class="discovery__search" action="/discovery" method="post">
 
                 <!-- ... your code here ... -->
                 <fieldset>
@@ -76,7 +76,7 @@
             </form>
             <!-- ############### VS1Lab 1a Form 2 End -->
 
-            <div class="discovery__wrapper row">
+            <div class="discovery__wrapper">
                 <div class="discovery__taglist col-5">
                     <ul class="discovery__results">
                         <li>Castle (49.01379, 8.404435) #sight</li>
