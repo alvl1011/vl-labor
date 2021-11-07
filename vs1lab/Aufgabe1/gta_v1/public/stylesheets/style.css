@@ -38,6 +38,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  max-width: 100%;
 }
 
 a {
@@ -54,7 +55,7 @@ form {
 /* Grid styles (no changes required) */
 
 .row {
-  width: 100%;
+  width: calc(100%);
   display: flex;
   justify-content: space-between;
   flex: 1;
@@ -310,23 +311,41 @@ footer span {
     padding: 20px;
   }
 
-  .discovery__map {
-    flex-direction: column;
-  }
-
   #mapView {
     height: 300px;
     width: 300px;
   }
 
-  .discovery__search{
+  .discovery__search {
     justify-content: start;
-    width: calc(150% - 1em);
+    width: calc(100%);
   }
 
-  .discovery__wrapper {
-    width: 100%;
+  .main__discovery {
+    width: calc(100%);
+  }
+
+  
+
+}
+
+@media screen and (max-width: 700px) {
+  
+  .discovery__map {
     flex-direction: column;
   }
 
+  .discovery__wrapper {
+    width: calc(100%);
+    flex-direction: column;
+  }
+
+  .discovery__search{
+    justify-content: start;
+    width: calc(100%);
+  }
+
+  .main__discovery {
+    width: calc(100%);
+  }
 }
