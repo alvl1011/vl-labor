@@ -65,7 +65,7 @@ class LocationHelper {
  * A class to help using the MapQuest map service.
  */
 class MapManager {
-    #apiKey = 'OKyaajOxtmZyIVOOjBDyWPFqLIXnwqpZ';
+    #apiKey = '';
 
     /**
      * Create a new MapManager instance.
@@ -86,7 +86,7 @@ class MapManager {
     getMapUrl(latitude, longitude, tags = [], zoom = 10) {
         if (this.#apiKey === '') {
             console.log("No API key provided.");
-            return "images/mapview.jpg";
+            return 'images/mapview.jpg';
         }
 
         let tagList = `You,${latitude},${longitude}`;
@@ -109,11 +109,14 @@ function example(i) {
 }
 function updateLocation() {
     let info =  LocationHelper.findLocation((helper) => {
+        let mapManager = new MapManager('OKyaajOxtmZyIVOOjBDyWPFqLIXnwqpZ');
         console.log(helper.latitude);
         console.log(helper.longitude);
-        document.getElementById('lat').value = helper.latitude;
-        document.getElementById('lon').value = helper.longitude;
-        document.getElementById('castle').innerHTML = 'Castle (' + helper.latitude + ', ' + helper.longitude + ') #sight';
+        document.getElementById('tag_latitude').value = helper.latitude;
+        document.getElementById('tag_longitude').value = helper.longitude;
+        document.getElementById('discovery_latitude').value = helper.latitude;
+        document.getElementById('discovery_longitude').value = helper.longitude;
+        document.getElementById('mapView').src = mapManager.getMapUrl(helper.latitude, helper.longitude);
     });
 };
 
