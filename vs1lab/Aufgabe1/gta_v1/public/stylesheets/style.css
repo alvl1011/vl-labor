@@ -20,16 +20,14 @@ html {
   box-sizing: inherit;
 }
 
-
 /* Variables (example: see declaration for "a" below) */
 
 :root {
-  --link-color: #00B7FF;
+  --link-color: #00b7ff;
   --background-color: #efefef;
   --border-color: #cdcdcd;
   --gray-color: #666;
 }
-
 
 /* HTML element styles */
 
@@ -50,7 +48,6 @@ a {
 form {
   display: flex;
 }
-
 
 /* Grid styles (no changes required) */
 
@@ -109,7 +106,6 @@ form {
   width: calc(100% - 1rem);
 }
 
-
 /* ### TODO ### Styles for Header Component */
 
 header {
@@ -146,8 +142,6 @@ legend {
 }
 /* ### TODO ### Styles for Main Component */
 
-
-
 main {
   padding: 20px;
 }
@@ -161,7 +155,7 @@ main {
 #tag-form fieldset {
   border-style: solid;
   border-color: var(--border-color);
-  color:  black;
+  color: black;
   border-width: 1px;
   height: 320px;
   width: 200px;
@@ -171,7 +165,7 @@ main {
   flex-direction: column;
 }
 
-#tag-form button {
+#tag-form .submit {
   width: 180px;
 }
 
@@ -195,11 +189,8 @@ input {
 
 /* Styles for Discovery component */
 
-
-
-
 .discovery__search {
-  display:  flex;
+  display: flex;
   justify-content: right;
   width: 666px;
   height: 150px;
@@ -219,12 +210,11 @@ input {
   margin-left: 0px;
 }
 
-
 .discovery__search fieldset {
   border-style: solid;
   border-color: var(--border-color);
-  color:  black;
-  width: 666px; 
+  color: black;
+  width: 666px;
   flex-direction: column;
   border-width: 1px;
   padding: 10px;
@@ -244,8 +234,7 @@ div {
   margin: 0;
 }
 
-
-button {
+.submit {
   text-align: center;
   font-weight: bold;
   padding: 5px;
@@ -261,14 +250,11 @@ button {
   width: 400px;
 }
 
-
 .num_field {
   background-color: var(--background-color);
   border-style: solid;
   border-width: 1px;
 }
-
-
 
 .discovery__results li {
   background-color: rgb(235, 235, 235);
@@ -278,13 +264,10 @@ button {
   padding: 10px;
   margin: 20px;
   width: 225px;
-  color:blue;
+  color: blue;
   font-size: 16px;
   list-style-type: none;
 }
-
-
-
 
 /* Styles for Footer Component */
 
@@ -301,8 +284,9 @@ footer span {
   font-weight: bold;
 }
 
-
 /*  Media Queries */
+
+/* width auf 100% in browser*/
 
 @media screen and (max-width: 1100px) {
   main {
@@ -318,34 +302,32 @@ footer span {
 
   .discovery__search {
     justify-content: start;
-    width: calc(100%);
+    width: 100%;
   }
 
   .main__discovery {
-    width: calc(100%);
+    width: 100%;
   }
-
-  
-
 }
 
+/* widh*/
+
 @media screen and (max-width: 700px) {
-  
   .discovery__map {
     flex-direction: column;
   }
 
   .discovery__wrapper {
-    width: calc(100%);
+    width: 100%;
     flex-direction: column;
   }
 
-  .discovery__search{
-    justify-content: start;
-    width: calc(100%);
+  .discovery__search {
+    justify-content: space-around;
+    width: 100%;
   }
 
   .main__discovery {
-    width: calc(100%);
+    width: 100%;
   }
 }

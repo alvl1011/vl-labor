@@ -3,99 +3,149 @@
 <!-- File origin: VS1LAB A1a -->
 
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GeoTagApp</title>
     <link rel="stylesheet" href="./stylesheets/style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
 
-<body>
+  <body>
     <header>
-        <img src="./images/location.png" class="header__image" alt="an image of a map and location">
-        <h1 class="header__title">GeoTagApp</h1>
-        <nav class="header__navigation">
-            <a href="#">About</a> | <a href="#">Help</a> | <a href="/">Home</a>
-        </nav>
+      <img
+        src="./images/location.png"
+        class="header__image"
+        alt="an image of a map and location"
+      />
+      <h1 class="header__title">GeoTagApp</h1>
+      <nav class="header__navigation">
+        <a href="#">About</a> | <a href="#">Help</a> | <a href="/">Home</a>
+      </nav>
     </header>
 
     <main class="row">
-        <section class="main__tagging tagging col-5">
-            <h2>Tagging</h2>
-            <!-- ############### VS1Lab 1a Form 1 Start -->
-            <form id="tag-form" action="/tagging" method="post">
+      <section class="main__tagging tagging col-5">
+        <h2>Tagging</h2>
+        <!-- ############### VS1Lab 1a Form 1 Start -->
+        <form id="tag-form" action="/tagging" method="post">
+          <!-- ... your code here ... -->
+          <fieldset>
+            <legend>Add a new GeoTag</legend>
+            <ul>
+              <li>
+                <label for="lat">Latitude:</label>
+                <input
+                  id="tag_latitude"
+                  class="num_field"
+                  type="number"
+                  minlength="1"
+                  pattern="([1-9])*.(([1-9])\d*)"
+                  readonly
+                />
+              </li>
+              <li>
+                <label for="lon">Longitude:</label>
+                <input
+                  id="tag_longitude"
+                  class="num_field"
+                  type="number"
+                  minlength="1"
+                  pattern="([1-9])*.(([1-9])\d*)"
+                  readonly
+                />
+              </li>
+              <li>
+                <label for="name">Name:</label>
+                <input
+                  id="name"
+                  class="field"
+                  type="name"
+                  placeholder="e.g. Central Berlin"
+                  minlength="2"
+                  maxlength="10"
+                  pattern="([A-Z])\w+"
+                  required
+                />
+              </li>
+              <li>
+                <label for="hash">Hashtag (optional):</label>
+                <input
+                  id="hash"
+                  class="field"
+                  type="value"
+                  placeholder="e.g. #ber"
+                  pattern="[#]\w+"
+                  minlength="2"
+                  maxlength="11"
+                />
+              </li>
+            </ul>
+            <input class="submit" type="submit" value="Add Tag" />
+          </fieldset>
+        </form>
+        <!-- ############### VS1Lab 1a Form 1 End -->
+      </section>
 
-              <!-- ... your code here ... -->
-                <fieldset>
-                    <legend>Add a new GeoTag</legend>
-                        <ul >
-                            <li><label for="lat">Latitude:</label> 
-                                <input id="lat" class="num_field" type="number" placeholder="49.01379"
-                                minlength="1" pattern="([1-9])*.(([1-9])\d*)" readonly>
-                            </li>
-                            <li><label for="lon">Longitude:</label>
-                                <input id="lon" class="num_field" type="number" placeholder="8.390071"
-                                minlength="1" pattern="([1-9])*.(([1-9])\d*)" readonly>
-                            </li>
-                            <li><label for="name">Name:</label>
-                                <input id="name" class="field" type="name" placeholder="e.g. Central Berlin"
-                                minlength="2" maxlength="10" pattern="([A-Z])\w+" required>
-                            </li>
-                            <li><label for="hash">Hashtag (optional):</label>
-                                <input id="hash" class="field" type="value" placeholder="e.g. #ber" pattern="[#]\w+"
-                                minlength="2" maxlength="11">
-                            </li>
-                        </ul>
-                        <button>Add Tag</button>
-                </fieldset>
+      <section class="main__discovery discovery col-7">
+        <h2 class="discovery__title">Discovery</h2>
 
-            </form>
-            <!-- ############### VS1Lab 1a Form 1 End -->
+        <!-- ############### VS1Lab 1a Form 2 Start -->
+        <form class="discovery__search" action="/discovery" method="post">
+          <!-- ... your code here ... -->
+          <!-- discovery inputs als versteckte in DOM -->
+          <fieldset>
+            <legend>Search</legend>
+            <ul>
+              <li>
+                <label for="search">Search term or keywords:</label>
+                <input id="search" type="value" placeholder="e.g Berlin" />
+              </li>
+            </ul>
+            <input
+              id="discovery_latitude"
+              class="num_field"
+              type="number"
+              minlength="1"
+              hidden
+            />
+            <input
+              id="discovery_longitude"
+              class="num_field"
+              type="number"
+              minlength="1"
+              hidden
+            />
+            <!-- inpur type submit -->
+            <input class="submit" id type="submit" value="Search" />
+          </fieldset>
+        </form>
+        <!-- ############### VS1Lab 1a Form 2 End -->
 
-        </section>
+        <div class="discovery__wrapper">
+          <div class="discovery__taglist col-5">
+            <ul class="discovery__results">
+              <li>Castle (49.01379, 8.404435) #sight</li>
+              <li>IWI (49.01379, 8.390071) #edu</li>
+            </ul>
+          </div>
 
-        <section class="main__discovery discovery col-8">
-            <h2 class="discovery__title">Discovery</h2>
-
-            <!-- ############### VS1Lab 1a Form 2 Start -->
-            <form class="discovery__search" action="/discovery" method="post">
-
-                <!-- ... your code here ... -->
-                <fieldset>
-                  <legend>Search</legend>
-                      <ul>
-                        <li><label for="search">Search term or keywords:</label> 
-                          <input id="search" type="value" placeholder="e.g Berlin">
-                        </li>
-                      </ul>
-                      <button>Search</button>
-                </fieldset>
-
-            </form>
-            <!-- ############### VS1Lab 1a Form 2 End -->
-
-            <div class="discovery__wrapper">
-                <div class="discovery__taglist col-5">
-                    <ul class="discovery__results">
-                        <li>Castle (49.01379, 8.404435) #sight</li>
-                        <li>IWI (49.01379, 8.390071) #edu</li>
-                    </ul>
-                </div>
-
-                <div class="discovery__map col-9">
-                    <img src="./images/mapview.jpg" alt="a map with locations" id="mapView" /> <br>
-                    <span>Result map</span>
-                </div>
-            </div>
-        </section>
-
+          <div class="discovery__map col-9">
+            <img
+              src="./images/mapview.jpg"
+              alt="a map with locations"
+              id="mapView"
+            />
+            <br />
+            <span>Result map</span>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer>
-        <span>(c) 2021/22 HKA_IWI_VSYS</span>
+      <span>(c) 2021/22 HKA_IWI_VSYS</span>
     </footer>
-</body>
-
+    <script src="javascripts/geotagging.js"></script>
+  </body>
 </html>

@@ -39,24 +39,24 @@ Die HTML Datei aus Aufgabe 1 muss nun noch etwas angepasst werden. Fügen sie al
 
 ### 2.1.3 Javascript testen
 
-  Nun können sie testen, ob die Vorbereitung erfolgreich war. Öffnen Sie die Datei `Aufgabe2/gta_v2/public/index.html` im **Browser**. Es sollte nun ein Alert-Fenster erscheinen. Dadurch sehen sie, dass das zugehörige Skript ausgeführt wird.
+Nun können sie testen, ob die Vorbereitung erfolgreich war. Öffnen Sie die Datei `Aufgabe2/gta_v2/public/index.html` im **Browser**. Es sollte nun ein Alert-Fenster erscheinen. Dadurch sehen sie, dass das zugehörige Skript ausgeführt wird.
 
 ## 2.2. Teilaufgaben
 
 ### 1. Teilaufgabe: Koordinaten in die Formulare eintragen
 
-Das JavaScript enthält zunächst einige Klassen mit Hilfsfunktionen. Die Klasse `LocationHelper` erleichtert die Verwendung der HTML5 Geolocation API zur Bestimmung der Position. Die Funktion `findLocation` nimmt als Parameter eine *Callback Funktion* an, die bei Erfolg mit einem instanziierten LocationHelper Objekt 'zurückgerufen' wird. Das LocationHelper Objekt enthält dann die aktuellen Koordinaten als private Properties, die mit einer 'get'-Methode ausgelesen werden können. Beim Aufruf der Funktion muss die Callback Funktion übergeben werden.
+Das JavaScript enthält zunächst einige Klassen mit Hilfsfunktionen. Die Klasse `LocationHelper` erleichtert die Verwendung der HTML5 Geolocation API zur Bestimmung der Position. Die Funktion `findLocation` nimmt als Parameter eine _Callback Funktion_ an, die bei Erfolg mit einem instanziierten LocationHelper Objekt 'zurückgerufen' wird. Das LocationHelper Objekt enthält dann die aktuellen Koordinaten als private Properties, die mit einer 'get'-Methode ausgelesen werden können. Beim Aufruf der Funktion muss die Callback Funktion übergeben werden.
 
 Fügen sie eine Funktion `updateLocation` zum Skript hinzu, die folgendes tut:
 
 - Auslesen der Position mit `findLocation`
-- Im Erfolgsfall `latitude` und `longitude` Eingabefelder des Tagging-Formulars *und* des Discovery-Formulars (versteckte Eingabefelder) suchen und in deren `value`-Attribute Koordinaten schreiben.
+- Im Erfolgsfall `latitude` und `longitude` Eingabefelder des Tagging-Formulars _und_ des Discovery-Formulars (versteckte Eingabefelder) suchen und in deren `value`-Attribute Koordinaten schreiben.
 
 Rufen sie die neue `updateLocation`-Funktion nach dem Laden des Dokuments automatisch auf.
 
 ### 2. Teilaufgabe: Position auf Karte darstellen
 
-Wir wollen nun die gefundene Position auf einer Karte darstellen. Konkret werden wir zu diesem Zweck *MapQuest* verwenden, ein - für unsere Zwecke - kostenfreier Dienst um statische Karten anzuzeigen. Zunächst benötigen sie einen **API-Schlüssel** für die [MapQuestApi](https://developer.mapquest.com/plan_purchase/steps/business_edition/business_edition_free/register) (kostenlos). Registrieren sie sich dort, erstellen sie eine App ('Callback URL' kann leer bleiben) und notieren sie sich den Key ('Consumer Key').
+Wir wollen nun die gefundene Position auf einer Karte darstellen. Konkret werden wir zu diesem Zweck _MapQuest_ verwenden, ein - für unsere Zwecke - kostenfreier Dienst um statische Karten anzuzeigen. Zunächst benötigen sie einen **API-Schlüssel** für die [MapQuestApi](https://developer.mapquest.com/plan_purchase/steps/business_edition/business_edition_free/register) (kostenlos). Registrieren sie sich dort, erstellen sie eine App ('Callback URL' kann leer bleiben) und notieren sie sich den Key ('Consumer Key').
 
 Die Klasse `MapManager` enthält einige Hilfsfunktionen zur Verwendung von MapQuest. Um eine Instanz zu erzeugen, wird der Konstruktor mit dem MapQuest API-Key aufgerufen. Dann kann die Methode `getMapUrl` verwendet werden, um die URL einer gewünschten Karte abzufragen. Die Karte selbst erhält man schließlich durch einen HTTP Request.
 
@@ -72,17 +72,17 @@ Zur Übersicht folgen noch mal alle Anforderungen in kompakter Form als Checklis
 
 ### 1. Teilaufgabe: Koordinaten bestimmen
 
-- [ ] Funktion `updateLocation` erstellen
-  - [ ] Nach dem Laden automatisch aufrufen
-  - [ ] Auslesen der Position mit `findLocation`
-  - [ ] Koordinaten in die Formulare eintragen
-    - [ ] `latitude` und `longitude` Felder
-    - [ ] Koordinaten in `value`-Attribute schreiben
-    - [ ] Auch versteckte Eingabefelder berücksichtigen
+- [x] Funktion `updateLocation` erstellen
+  - [x] Nach dem Laden automatisch aufrufen
+  - [x] Auslesen der Position mit `findLocation`
+  - [x] Koordinaten in die Formulare eintragen
+    - [x] `latitude` und `longitude` Felder
+    - [x] Koordinaten in `value`-Attribute schreiben
+    - [x] Auch versteckte Eingabefelder berücksichtigen
 
 ### 2. Teilaufgabe: Karte darstellen
 
-- [ ] MapQuest API-Schlüssel besorgen und eintragen
-- [ ] `updateLocation`-Funktion ergänzen
-  - [ ] Funktion `getMapUrl` aufrufen
-  - [ ] URL im `src`-Attribut des Image Elements eintragen
+- [x] MapQuest API-Schlüssel besorgen und eintragen
+- [x] `updateLocation`-Funktion ergänzen
+  - [x] Funktion `getMapUrl` aufrufen
+  - [x] URL im `src`-Attribut des Image Elements eintragen
