@@ -51,6 +51,8 @@ class LocationHelper {
             let helper = new LocationHelper();
             helper.#latitude = location.coords.latitude.toFixed(5);
             helper.#longitude = location.coords.longitude.toFixed(5);
+            // console.log(helper.#latitude);
+            // console.log(helper.#longitude);
             // Pass the locationHelper object to the callback.
             callback(helper);
         }, (error) => {
@@ -63,7 +65,7 @@ class LocationHelper {
  * A class to help using the MapQuest map service.
  */
 class MapManager {
-    #apiKey = '';
+    #apiKey = 'OKyaajOxtmZyIVOOjBDyWPFqLIXnwqpZ';
 
     /**
      * Create a new MapManager instance.
@@ -102,9 +104,20 @@ class MapManager {
  * A function to retrieve the current location and update the page.
  * It is called once the page has been fully loaded.
  */
-// ... your code here ...
+function example(i) {
+    console.log(i);
+}
+function updateLocation() {
+    let info =  LocationHelper.findLocation((helper) => {
+        console.log(helper.latitude);
+        console.log(helper.longitude);
+        document.getElementById('lat').value = helper.latitude;
+        document.getElementById('lon').value = helper.longitude;
+        document.getElementById('castle').innerHTML = 'Castle (' + helper.latitude + ', ' + helper.longitude + ') #sight';
+    });
+};
 
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
-    alert("Please change the script 'geotagging.js'");
+    updateLocation();
 });
