@@ -14,6 +14,8 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
+const bodyParser = require('body-parser');
+
 
 const indexRouter = require('./routes/index');
 
@@ -32,6 +34,11 @@ app.set('view engine', 'ejs');
 // Set logger
 app.use(logger('dev'));
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
 // Set content processing
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -43,6 +50,7 @@ app.use(express.urlencoded({ extended: false }));
  */
 
 // TODO: ... your code here ...
+app.use(express.static(__dirname + '/public'));
 
 // Set dedicated script for routing
 app.use('/', indexRouter);
@@ -61,5 +69,7 @@ app.use(function(err, req, res) {
     res.status(err.status || 500);
     res.render('error');
   });
+
+
 
  module.exports = app;

@@ -108,6 +108,16 @@ form {
 
 /* ### TODO ### Styles for Header Component */
 
+.list {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 20px;
+}
+.list input {
+  width: 40px;
+  height: 25px;
+}
 header {
   display: flex;
   justify-content: space-around;
