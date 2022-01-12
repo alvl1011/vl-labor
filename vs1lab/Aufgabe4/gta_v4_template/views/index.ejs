@@ -1,0 +1,202 @@
+<!-- TODO: HTML AUS AUFGABE2 HIERHER KOPIEREN UND DIE BEISPIEL-EINTRÄGE DER DISCOVERY-LISTE MIT DEN FOLGENDEN ZEILEN ERSETZEN -->
+<!DOCTYPE html>
+
+<!-- File origin: VS1LAB A1a -->
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GeoTagApp</title>
+    <link type="text/css" rel="stylesheet" href="stylesheets/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <header>
+      <img
+        src="images/location.png"
+        class="header__image"
+        alt="an image of a map and location"
+      />
+      <h1 class="header__title">GeoTagApp</h1>
+      <nav class="header__navigation">
+        <a href="#">About</a> | <a href="#">Help</a> | <a href="/">Home</a>
+      </nav>
+    </header>
+
+    <main class="row">
+      <section class="main__tagging tagging col-5">
+        <h2>Tagging</h2>
+        <!-- ############### VS1Lab 1a Form 1 Start -->
+        <form id="tag-form" action="/tagging" method="post">
+          <!-- ... your code here ... -->
+          <fieldset>
+            <legend>Add a new GeoTag</legend>
+            <ul>
+              <li>
+                <label for="lat">Latitude:</label>
+                <% if(typeof iplat !== "undefined")  {%>
+                    <input
+                      id="tag_latitude"
+                      name="tag_latitude"
+                      class="num_field"
+                      type="number"
+                      minlength="1"
+                      value=<%- iplat %>
+                      pattern="([1-9])*.(([1-9])\d*)"
+                      readonly
+                    />
+                <% } else { %>
+                    <input
+                        id="tag_latitude"
+                        name="tag_latitude"
+                        class="num_field"
+                        type="number"
+                        minlength="1"
+                        value=""
+                        pattern="([1-9])*.(([1-9])\d*)"
+                         readonly
+                    />
+                <% }%>
+              </li>
+              <li>
+                <label for="lon">Longitude:</label>
+                <% if(typeof iplong !== "undefined")  {%>
+                   <input
+                      id="tag_longitude"
+                      name="tag_longitude"
+                      class="num_field"
+                      type="number"
+                      minlength="1"
+                      value=<%- iplong %>
+                      pattern="([1-9])*.(([1-9])\d*)"
+                      readonly
+                   />
+                <% } else {%>
+                   <input
+                      id="tag_longitude"
+                      name="tag_longitude"
+                      class="num_field"
+                      type="number"
+                      minlength="1"
+                      value=""
+                      pattern="([1-9])*.(([1-9])\d*)"
+                      readonly
+                   />
+                <% }%>
+              </li>
+              <li>
+                <label for="name">Name:</label>
+                <input
+                  id="name"
+                  class="field"
+                  type="name"
+                  name="name"
+                  placeholder="e.g. Central Berlin"
+                  minlength="2"
+                  maxlength="10"
+                  pattern="([A-Z])\w+"
+                  required
+                />
+              </li>
+              <li>
+                <label for="hash">Hashtag (optional):</label>
+                <input
+                  id="hash"
+                  name="hashtag"
+                  class="field"
+                  type="value"
+                  placeholder="e.g. #ber"
+                  pattern="[#]\w+"
+                  minlength="2"
+                  maxlength="11"
+                />
+              </li>
+            </ul>
+            <% if(typeof iplat !== "undefined")  {%>
+                <input id="data-latitude" type="hidden" name="latitude" value=<%- iplat %>>
+            <% } else { %>
+                <input id="data-latitude" type="hidden" name="latitude" value="">
+            <% }%>
+            <% if(typeof iplong !== "undefined")  {%>
+            	<input id="data-longitude" type="hidden" name="longitude" value=<%- iplong %>>
+            <% } else { %>
+            	<input id="data-longitude" type="hidden" name="longitude" value="">
+            <% }%>
+            <input class="submit" type="submit" value="Add Tag" />
+          </fieldset>
+        </form>
+        <!-- ############### VS1Lab 1a Form 1 End -->
+      </section>
+
+      <section class="main__discovery discovery col-7">
+        <h2 class="discovery__title">Discovery</h2>
+
+        <!-- ############### VS1Lab 1a Form 2 Start -->
+        <form class="discovery__search" action="/discovery" method="post">
+          <!-- ... your code here ... -->
+          <!-- discovery inputs als versteckte in DOM -->
+          <fieldset>
+            <legend>Search</legend>
+            <ul>
+              <li>
+                <label for="search">Search term or keywords:</label>
+                <input id="search" type="value" value="" id="search" name="searchBox" placeholder="e.g Berlin" />
+              </li>
+            </ul>
+
+            <% if(typeof iplat !== "undefined")  {%>
+            	<input id="data-latitude2" type="hidden" name="latitude2" value=<%- iplat %>>
+            <% } else { %>
+            	<input id="data-latitude2" type="hidden" name="latitude2" value="">
+            <% }%>
+
+            <% if(typeof iplong !== "undefined")  {%>
+            	<input id="data-longitude2" type="hidden" name="longitude2" value=<%- iplong %>>
+            <% } else { %>
+            	<input id="data-longitude2" type="hidden" name="longitude2" value="">
+            <% }%>
+            <!-- input type submit -->
+            <input class="submit" id type="submit" value="Search" />
+          </fieldset>
+        </form>
+        <!-- ############### VS1Lab 1a Form 2 End -->
+
+        <div class="discovery__wrapper">
+          <div class="discovery__taglist col-5">
+            <ul class="discovery__results">
+              <% if (taglist !== undefined) taglist.forEach(function(gtag) {%>
+              <li>
+                <%= gtag.getTag().name %> ( <%= gtag.getTag().latitude %>,<%= gtag.getTag().longitude %>)
+                <%= gtag.getTag().hashtag %>
+              </li>
+              <% }); %>
+            </ul>
+            <div class="list">
+                <input type="button" id="previous" value="<">
+                <input type="button" id="next" value=">">
+            </div>
+          </div>
+
+          <div class="discovery__map col-9">
+            <img
+              src="images/mapview.jpg"
+              alt="a map with locations"
+              id="mapView"
+            />
+            <br/>
+            <span>Result map</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>(c) 2021/22 HKA_IWI_VSYS</span>
+    </footer>
+    <script src="javascripts/geotagging.js"></script>
+    <script src="javascripts/location-helper.js"></script>
+    <script src="javascripts/map-manager.js"></script>
+  </body>
+</html>
