@@ -174,8 +174,9 @@
               <% }); %>
             </ul>
             <div class="list">
-                <input type="button" id="previous" value="<">
-                <input type="button" id="next" value=">">
+                <input type="button" id="previous" value="<" action="/previous" method="post">
+                <label for="page">Seite 1/x</label>
+                <input type="button" id="next" value=">" action="/next" method="post">
             </div>
           </div>
 

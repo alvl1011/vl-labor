@@ -26,6 +26,11 @@ const GeoTag = require('../models/geotag');
  */
 // eslint-disable-next-line no-unused-vars
 const GeoTagStore = require('../models/geotag-store');
+const {log} = require("debug");
+const store = new GeoTagStore();
+
+const examples = require('../models/geotag-examples');
+
 
 // App routes (A3)
 
@@ -39,7 +44,113 @@ const GeoTagStore = require('../models/geotag-store');
  */
 
 router.get('/', (req, res) => {
-  res.render('index', { taglist: [] })
+  res.render('index', { taglist: store.getTags()
+   })
+});
+/**
+ * Route '/tagging' for HTTP 'POST' requests.
+ * (http://expressjs.com/de/4x/api.html#app.post.method)
+ *
+ * Requests cary the fields of the tagging form in the body.
+ * (http://expressjs.com/de/4x/api.html#req.body)
+ *
+ * Based on the form data, a new geotag is created and stored.
+ *
+ * As response, the ejs-template is rendered with geotag objects.
+ * All result objects are located in the proximity of the new geotag.
+ * To this end, "GeoTagStore" provides a method to search geotags 
+ * by radius around a given location.
+ */
+
+// TODO: ... your code here ...
+router.post('/tagging',  (req, res) => {
+
+  let tag = new GeoTag(req.body['tag_latitude'], req.body['tag_longitude'], req.body['name'], req.body['hashtag']);
+
+  store.addGeoTag(tag);
+
+  store.ip.getTag().latitude = req.body['tag_latitude'];
+  store.ip.getTag().longitude = req.body['tag_longitude'];
+
+  res.render('index', {
+      latitude: tag.getTag().latitude,
+      longitude: tag.getTag().longitude,
+      latitude2: tag.getTag().latitude,
+      longitude2: tag.getTag().longitude,
+      name: tag.getTag().name,
+      hashtag: tag.getTag().hashtag,
+      taglist: store.getTags(),
+      iplat: store.ip.getTag().latitude,
+      iplong : store.ip.getTag().longitude,
+  });
+});
+
+
+/**
+* Route '/discovery' for HTTP 'POST' requests.
+* (http://expressjs.com/de/4x/api.html#app.post.method)
+*
+* Requests cary the fields of the discovery form in the body.
+* This includes coordinates and an optional search term.
+* (http://expressjs.com/de/4x/api.html#req.body)
+*
+* As response, the ejs-template is rendered with geotag objects.
+* All result objects are located in the proximity of the given coordinates.
+* If a search term is given, the results are further filtered to contain 
+* the term as a part of their names or hashtags. 
+* To this end, "GeoTagStore" provides methods to search geotags 
+* by radius and keyword.
+*/
+
+// TODO: ... your code here ...
+router.post('/discovery', (req, res) => {
+
+  let searchItem = req.body['searchBox'];
+  let result = store.searchNearbyGeoTags(searchItem.toString());
+  if (searchItem !== '') {
+      if (result.length > 0) {
+          res.render('index', {
+              latitude: result[0].getTag().latitude,
+              longitude: result[0].getTag().longitude,
+              latitude2: result[0].getTag().latitude,
+              longitude2: result[0].getTag().longitude,
+              name: result[0].getTag().name,
+              hashtag: result[0].getTag().hashtag,
+              taglist: result,
+              iplat: store.ip.getTag().latitude,
+              iplong: store.ip.getTag().longitude,
+      });
+      } else {
+          res.render('index', {
+              taglist: result,
+              iplat: store.ip.getTag().latitude,
+              iplong: store.ip.getTag().longitude,
+          });
+      }
+  } else {
+      result = store.getNearbyGeoTags(store.ip.getTag().latitude, store.ip.getTag().longitude, 5);
+
+      if(result.length > 0 && req.body['data-latitude'] !== 'undefined') {
+          res.render('index', {
+              taglist: result,
+              latitude: result[0].latitude,
+              longitude: result[0].longitude,
+              latitude2: result[0].getTag().latitude,
+              longitude2: result[0].getTag().longitude,
+              name: result[0].name,
+              hashtag: result[0].hashtag,
+              iplat: store.ip.getTag().latitude,
+              iplong: store.ip.getTag().longitude,
+          });
+      }
+      else {
+          res.render('index', {
+              taglist: [],
+              iplat: store.ip.getTag().latitude,
+              iplong: store.ip.getTag().longitude,
+          });
+      }
+  }
 });
 
 // API routes (A4)
@@ -115,5 +226,63 @@ router.get('/', (req, res) => {
  */
 
 // TODO: ... your code here ...
+
+/**
+ * A4.3:
+ * Pagination
+ */
+
+var current_page = 1;
+var records_per_page = 4;
+ 
+router.post('/next', (req, res) => {
+  if (current_page < numPages()) {
+    current_page++;
+    changePage(current_page);
+  }
+});
+
+router.post('/previous', (req, res) => {
+  if (current_page > 1) {
+    current_page--;
+    changePage(current_page);
+  }
+});
+
+function changePage(page)
+{
+    var btn_next = document.getElementById("btn_next");
+    var btn_prev = document.getElementById("btn_prev");
+    var listing_table = document.getElementById("listingTable");
+    var page_span = document.getElementById("page");
+
+    // Validate page
+    if (page < 1) page = 1;
+    if (page > numPages()) page = numPages();
+
+    listing_table.innerHTML = "";
+
+    for (var i = (page-1) * records_per_page; i < (page * records_per_page); i++) {
+        listing_table.innerHTML += objJson[i].adName + "<br>";
+    }
+    page_span.innerHTML = page;
+
+    if (page == 1) {
+        btn_prev.style.visibility = "hidden";
+    } else {
+        btn_prev.style.visibility = "visible";
+    }
+
+    if (page == numPages()) {
+        btn_next.style.visibility = "hidden";
+    } else {
+        btn_next.style.visibility = "visible";
+    }
+}
+
+function numPages()
+{
+    return Math.ceil(store.length / records_per_page);
+}
 
 module.exports = router;
