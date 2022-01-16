@@ -1,0 +1,346 @@
+/*
+  File origin: VS1LAB A1b  
+
+  CSS style is BEM. Classes used for CSS, IDs for JavaScript querying (future use).
+  CSS variables used for clarity and themability (e.g. through SSR). 
+  Inherited box sizing used for ease of including 3rd party content-box components.
+*/
+
+/* Global styling */
+
+html {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+
+  /* This approach prevents issues with 3rd party content-box components */
+  box-sizing: inherit;
+}
+
+/* Variables (example: see declaration for "a" below) */
+
+:root {
+  --link-color: #00b7ff;
+  --background-color: #efefef;
+  --border-color: #cdcdcd;
+  --gray-color: #666;
+}
+
+/* HTML element styles */
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 100%;
+}
+
+a {
+  color: var(--link-color);
+}
+
+/* ### TODO ### Styles for other HTML elements */
+
+form {
+  display: flex;
+}
+
+/* Grid styles (no changes required) */
+
+.row {
+  width: calc(100%);
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.col-1 {
+  width: calc(8.33% - 1rem);
+}
+
+.col-2 {
+  width: calc(16.66% - 1rem);
+}
+
+.col-3 {
+  width: calc(25% - 1rem);
+}
+
+.col-4 {
+  width: calc(33.33% - 1rem);
+}
+
+.col-5 {
+  width: calc(41.66% - 1rem);
+}
+
+.col-6 {
+  width: calc(50% - 1rem);
+}
+
+.col-7 {
+  width: calc(58.33% - 1rem);
+}
+
+.col-8 {
+  width: calc(66.66% - 1rem);
+}
+
+.col-9 {
+  width: calc(75% - 1rem);
+}
+
+.col-10 {
+  width: calc(83.33% - 1rem);
+}
+
+.col-11 {
+  width: calc(91.66% - 1rem);
+}
+
+.col-12 {
+  width: calc(100% - 1rem);
+}
+
+/* ### TODO ### Styles for Header Component */
+
+.list {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 20px;
+}
+.list input {
+  width: 40px;
+  height: 25px;
+}
+.main__tagging h2 {
+  text-align: center;
+  margin-right: 150px;
+}
+header {
+  display: flex;
+  justify-content: space-around;
+  background-color: var(--background-color);
+  flex: 1 100%;
+  align-items: baseline;
+  border: 1px solid var(--border-color);
+}
+
+.header__image {
+  order: 1;
+  margin: auto;
+  height: 50px;
+  width: 50px;
+  padding: 5px;
+}
+
+.header__title {
+  order: 2;
+  font-variant: small-caps;
+  margin: auto;
+}
+
+.header__navigation {
+  order: 3;
+  margin: auto;
+}
+
+legend {
+  font-weight: bold;
+  font-size: small;
+}
+/* ### TODO ### Styles for Main Component */
+
+main {
+  padding: 20px;
+}
+
+/* Styles for Tagging component */
+
+#tag-form {
+  padding: 10px;
+}
+
+#tag-form fieldset {
+  border-style: solid;
+  border-color: var(--border-color);
+  color: black;
+  border-width: 1px;
+  height: 320px;
+  width: 200px;
+  margin: auto;
+  padding: 10px;
+  line-height: 1.8;
+  flex-direction: column;
+}
+
+#tag-form .submit {
+  width: 180px;
+}
+
+label {
+  color: var(--gray-color);
+}
+
+.num_field {
+  height: 30px;
+  width: 180px;
+}
+.field {
+  height: 30px;
+  width: 180px;
+}
+
+input {
+  height: 30px;
+  width: 175px;
+}
+
+/* Styles for Discovery component */
+
+.discovery__search {
+  display: flex;
+  justify-content: right;
+  width: 666px;
+  height: 150px;
+  padding: 10px;
+}
+
+.discovery__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+
+#search {
+  width: 150px;
+  height: 30px;
+  margin-left: 0px;
+}
+
+.discovery__search fieldset {
+  border-style: solid;
+  border-color: var(--border-color);
+  color: black;
+  width: 666px;
+  flex-direction: column;
+  border-width: 1px;
+  padding: 10px;
+}
+
+li {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  line-height: 1.8;
+  margin: 0;
+  padding: 0;
+}
+
+div {
+  padding: 0;
+  margin: 0;
+}
+
+.submit {
+  text-align: center;
+  font-weight: bold;
+  padding: 5px;
+  position: relative;
+  top: 10px;
+  width: 150px;
+  height: 30px;
+}
+
+#mapView {
+  order: 1;
+  height: 350px;
+  width: 400px;
+}
+
+.num_field {
+  background-color: var(--background-color);
+  border-style: solid;
+  border-width: 1px;
+}
+
+#discovery__results li {
+  background-color: rgb(235, 235, 235);
+  border-style: solid;
+  border-width: 1px;
+  border-color: #666;
+  padding: 10px;
+  margin: 20px;
+  width: 225px;
+  color: blue;
+  font-size: 16px;
+  list-style-type: none;
+}
+
+/* Styles for Footer Component */
+
+footer {
+  display: flex;
+  justify-content: flex-start;
+  background-color: var(--background-color);
+  flex: 1 100%;
+  border: 1px solid var(--border-color);
+}
+footer span {
+  order: 1;
+  align-self: center;
+  font-weight: bold;
+}
+
+/*  Media Queries */
+
+/* width auf 100% in browser*/
+
+@media screen and (max-width: 1100px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  #mapView {
+    height: 300px;
+    width: 350px;
+  }
+
+  .discovery__search {
+    justify-content: start;
+    width: 100%;
+  }
+
+  .main__discovery {
+    width: 100%;
+  }
+}
+
+
+@media screen and (max-width: 700px) {
+  .discovery__map {
+    flex-direction: column;
+  }
+
+  .discovery__wrapper {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .discovery__search {
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .main__discovery {
+    width: 100%;
+  }
+}

@@ -1,0 +1,41 @@
+GET localhost:3000/api/geotags?searchBox=#campus HTTP/1.1
+Content-Type: application/json
+
+###
+POST localhost:3000/api/geotags
+Content-Type: application/json
+
+{
+  "latitude": 49.0123,
+  "longitude": 8.4356,
+  "name": "Beispiel",
+  "hashtag": "#beispiel"
+}
+
+###
+GET localhost:3000/api/geotags/5
+Content-Type: application/json
+
+###
+PUT  localhost:3000/api/geotags/2
+Content-Type: application/json
+
+{
+  "latitude": 49.0123,
+  "longitude": 8.4356,
+  "name": "Beispiel1",
+  "hashtag": "#beispiel"
+}
+
+###
+GET localhost:3000/api/geotags HTTP/1.1
+Content-Type: application/json
+
+###
+DELETE localhost:3000/api/geotags/2
+Content-Type: application/json
+
+
+###
+GET localhost:3000/api/geotags HTTP/1.1
+Content-Type: application/json
