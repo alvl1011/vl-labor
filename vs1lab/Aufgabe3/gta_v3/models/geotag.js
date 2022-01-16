@@ -31,7 +31,7 @@ class GeoTag {
     getTag() {
         return this.#tag;
     }
-   
+
     
 }
 

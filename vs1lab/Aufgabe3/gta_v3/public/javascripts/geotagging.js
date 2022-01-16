@@ -33,10 +33,13 @@ function updateLocation() {
             document.getElementById('data-longitude2').value = helper.longitude;
             document.getElementById('mapView').src = mapManager.getMapUrl(helper.latitude, helper.longitude);
         });
+    } else {
+        let tags = JSON.parse(document.getElementById('mapView').dataset.tags);
+        let mapManager = new MapManager('OKyaajOxtmZyIVOOjBDyWPFqLIXnwqpZ');
+        document.getElementById('mapView').src = mapManager.getMapUrl(tags[tags.length - 1].latitude, tags[tags.length - 1].longitude, tags, 12);
     }
 
-
-};
+}
 
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {

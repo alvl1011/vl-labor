@@ -83,7 +83,7 @@ class InMemoryGeoTagStore{
                 results.push(el);
             }
         });
-        return results;
+        return this.getObjectArray(results);
     }
 
    searchNearbyGeoTags(key) {
@@ -98,7 +98,7 @@ class InMemoryGeoTagStore{
            console.log(element.getTag().hashtag);
            console.log(typeof element.getTag().name);
         });
-        return results;
+        return this.getObjectArray(results);
     }
 
     #getDistanceFromLatLong(latitudeA, longitudeA, latitudeB, longitudeB) {
@@ -109,6 +109,19 @@ class InMemoryGeoTagStore{
             Math.cos(latitudeA * (Math.PI/180)) * Math.cos(latitudeB * (Math.PI/180)) *
             Math.sin(radianLon/2) * Math.sin(radianLon/2);
         return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))); // return distance in km
+    }
+
+    getObjectArray(array) {
+        let arr = [];
+        array.forEach(tag => {
+            arr.push({
+                latitude: tag.getTag().latitude,
+                longitude: tag.getTag().longitude,
+                name: tag.getTag().name,
+                hashtag: tag.getTag().hashtag
+            });
+        });
+        return arr;
     }
 }
 

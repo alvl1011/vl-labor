@@ -33,7 +33,6 @@ const GeoTagStore = require('../models/geotag-store.js');
 const {log} = require("debug");
 const store = new GeoTagStore();
 
-const examples = require('../models/geotag-examples');
 
 /**
  * Route '/' for HTTP 'GET' requests.
@@ -46,8 +45,8 @@ const examples = require('../models/geotag-examples');
 
 // TODO: extend the following route example if necessary
 router.get('/', (req, res) => {
-  res.render('index', { taglist: store.getTags()
-   })
+    res.render('index', { taglist: store.getObjectArray(store.getTags())
+   });
 });
 
 /**
@@ -72,6 +71,7 @@ router.post('/tagging',  (req, res) => {
 
     store.addGeoTag(tag);
 
+
     store.ip.getTag().latitude = req.body['tag_latitude'];
     store.ip.getTag().longitude = req.body['tag_longitude'];
 
@@ -82,7 +82,7 @@ router.post('/tagging',  (req, res) => {
         longitude2: tag.getTag().longitude,
         name: tag.getTag().name,
         hashtag: tag.getTag().hashtag,
-        taglist: store.getTags(),
+        taglist: store.getObjectArray(store.getTags()),
         iplat: store.ip.getTag().latitude,
         iplong : store.ip.getTag().longitude,
     });
@@ -113,12 +113,12 @@ router.post('/discovery', (req, res) => {
     if (searchItem !== '') {
         if (result.length > 0) {
             res.render('index', {
-                latitude: result[0].getTag().latitude,
-                longitude: result[0].getTag().longitude,
-                latitude2: result[0].getTag().latitude,
-                longitude2: result[0].getTag().longitude,
-                name: result[0].getTag().name,
-                hashtag: result[0].getTag().hashtag,
+                latitude: result[0].latitude,
+                longitude: result[0].longitude,
+                latitude2: result[0].latitude,
+                longitude2: result[0].longitude,
+                name: result[0].name,
+                hashtag: result[0].hashtag,
                 taglist: result,
                 iplat: store.ip.getTag().latitude,
                 iplong: store.ip.getTag().longitude,
@@ -131,15 +131,15 @@ router.post('/discovery', (req, res) => {
             });
         }
     } else {
-        result = store.getNearbyGeoTags(store.ip.getTag().latitude, store.ip.getTag().longitude, 5);
+        result = store.getNearbyGeoTags(store.ip.getTag().latitude, store.ip.getTag().longitude, 5)
 
         if(result.length > 0 && req.body['data-latitude'] !== 'undefined') {
             res.render('index', {
                 taglist: result,
                 latitude: result[0].latitude,
                 longitude: result[0].longitude,
-                latitude2: result[0].getTag().latitude,
-                longitude2: result[0].getTag().longitude,
+                latitude2: result[0].latitude,
+                longitude2: result[0].longitude,
                 name: result[0].name,
                 hashtag: result[0].hashtag,
                 iplat: store.ip.getTag().latitude,

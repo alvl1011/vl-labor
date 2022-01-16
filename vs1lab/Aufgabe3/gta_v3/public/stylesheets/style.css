@@ -118,6 +118,10 @@ form {
   width: 40px;
   height: 25px;
 }
+.main__tagging h2 {
+  text-align: center;
+  margin-right: 150px;
+}
 header {
   display: flex;
   justify-content: space-around;
@@ -256,7 +260,7 @@ div {
 
 #mapView {
   order: 1;
-  height: 400px;
+  height: 350px;
   width: 400px;
 }
 
@@ -307,7 +311,7 @@ footer span {
 
   #mapView {
     height: 300px;
-    width: 300px;
+    width: 350px;
   }
 
   .discovery__search {
@@ -320,7 +324,6 @@ footer span {
   }
 }
 
-/* widh*/
 
 @media screen and (max-width: 700px) {
   .discovery__map {
