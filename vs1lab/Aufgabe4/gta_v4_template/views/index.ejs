@@ -164,7 +164,7 @@
         <!-- ############### VS1Lab 1a Form 2 End -->
 
         <div class="discovery__wrapper">
-          <div class="discovery__taglist col-5">
+          <div class="discovery__taglist col-5" onload="pageinit()">
             <ul class="discovery__results">
               <% if (taglist !== undefined) taglist.forEach(function(gtag) {%>
               <li>
@@ -175,7 +175,7 @@
             </ul>
             <div class="list">
                 <input type="button" id="previous" value="<" action="/previous" method="post">
-                <label for="page">Seite 1/x</label>
+                <label for="page">Seite <span id="pagenumber"></span></label>
                 <input type="button" id="next" value=">" action="/next" method="post">
             </div>
           </div>

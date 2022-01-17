@@ -235,14 +235,14 @@ router.post('/discovery', (req, res) => {
 var current_page = 1;
 var records_per_page = 4;
  
-router.post('/next', (req, res) => {
-  if (current_page < numPages()) {
-    current_page++;
-    changePage(current_page);
-  }
+router.post('/next', () => {
+    if (current_page < numPages()) {
+      current_page++;
+      changePage(current_page);
+    }
 });
 
-router.post('/previous', (req, res) => {
+router.post('/previous', () => {
   if (current_page > 1) {
     current_page--;
     changePage(current_page);
@@ -251,10 +251,10 @@ router.post('/previous', (req, res) => {
 
 function changePage(page)
 {
-    var btn_next = document.getElementById("btn_next");
-    var btn_prev = document.getElementById("btn_prev");
-    var listing_table = document.getElementById("listingTable");
-    var page_span = document.getElementById("page");
+    var btn_next = document.getElementById("next");
+    var btn_prev = document.getElementById("previous");
+    var listing_table = document.getElementsByClassName("discovery__results");
+    var page_span = document.getElementById("pagenumber");
 
     // Validate page
     if (page < 1) page = 1;
@@ -263,20 +263,20 @@ function changePage(page)
     listing_table.innerHTML = "";
 
     for (var i = (page-1) * records_per_page; i < (page * records_per_page); i++) {
-        listing_table.innerHTML += objJson[i].adName + "<br>";
+        listing_table.innerHTML += store.taglist[i].name + "<br>";
     }
     page_span.innerHTML = page;
 
     if (page == 1) {
-        btn_prev.style.visibility = "hidden";
+        btn_prev.disabled = "true";
     } else {
-        btn_prev.style.visibility = "visible";
+        btn_prev.disabled = "false";
     }
 
     if (page == numPages()) {
-        btn_next.style.visibility = "hidden";
+        btn_next.disabled = "true";
     } else {
-        btn_next.style.visibility = "visible";
+        btn_next.disabled = "false";
     }
 }
 
@@ -284,5 +284,9 @@ function numPages()
 {
     return Math.ceil(store.length / records_per_page);
 }
+
+function pageinit() {
+    changePage(1);
+};
 
 module.exports = router;
