@@ -45,7 +45,8 @@ discoveryTag.addEventListener('submit', (event) => {
 
    let latToSend = document.getElementById('data-latitude2').value;
    let lonToSend = document.getElementById('data-longitude2').value;
-   let url = (searchTerm !== undefined ? 'http://localhost:3000/api/geotags?searchBox=': 'http://localhost:3000/api/geotags') + searchTerm;
+   let url = (searchTerm !== undefined ? 'http://localhost:3000/api/geotags?searchBox=': 'http://localhost:3000/api/geotags') + searchTerm
+            + (latToSend !== undefined ? '&latitude=' + latToSend : '') + (lonToSend !== undefined ? '&latitude=' + lonToSend : '');
    let searchRequest = fetch(url, {
        method: 'GET'
    });
@@ -55,7 +56,7 @@ discoveryTag.addEventListener('submit', (event) => {
 
         tags.forEach(tag => {
             htmlString +=
-                "<li> " + tag.name + "  (" + tag.latitude + ", " + tag.longitude + ") " + tag.hashtag + " </li>";
+                "<li onclick=\"onListClick(this.innerText.split(' '))\"> " + tag.name + "  (" + tag.latitude + ", " + tag.longitude + ") " + tag.hashtag + "</li>";
         });
         document.getElementById('search').value = '';
         document.getElementById('discovery__results').innerHTML = '';
@@ -85,7 +86,7 @@ function updateLocation() {
     } else {
         let tags = JSON.parse(document.getElementById('mapView').dataset.tags);
         let mapManager = new MapManager('OKyaajOxtmZyIVOOjBDyWPFqLIXnwqpZ');
-        document.getElementById('mapView').src = mapManager.getMapUrl(tags[tags.length - 1].latitude, tags[tags.length - 1].longitude, tags, 12);
+        document.getElementById('mapView').src = mapManager.getMapUrl(tags[tags.length - 1].latitude, tags[tags.length - 1].longitude, tags, 14);
     }
 
 }
@@ -95,10 +96,11 @@ async function setTags(response) {
     serverResponse.then(res => {
         let tags = res.taglist;
         let htmlString = '';
+        let i = 0;
 
         tags.forEach(tag => {
             htmlString +=
-                "<li> " + tag.name + "  (" + tag.latitude + ", " + tag.longitude + ") " + tag.hashtag + " </li>";
+                "<li onclick=\"onListClick(this.innerText.split(' '))\"> " + tag.name + "  (" + tag.latitude + ", " + tag.longitude + ") " + tag.hashtag + " </li>";
         });
         document.getElementById('discovery__results').innerHTML = '';
         document.getElementById('discovery__results').innerHTML += htmlString;
@@ -110,6 +112,55 @@ async function getAllTags() {
     let response = await fetch('http://localhost:3000/api/geotags');
     return await setTags(response);
 }
+
+function onListClick(event) {
+    document.getElementById('editable-tag').style.display = 'block';
+    document.getElementById('edit-name').value = event[0];
+    document.getElementById('edit-hash').value = event[3];
+}
+
+let deleteEvent = document.getElementById('delete-event');
+deleteEvent.addEventListener('click', (event) => {
+    let tags = JSON.parse(document.getElementById('mapView').dataset.tags);
+    let number = 0;
+    for (let i = 0; i < tags.length; i++) {
+        if (tags[i].name === document.getElementById('edit-name').value) {
+            number = i;
+        }
+    }
+    console.log(name)
+    let deletedEvent = fetch('http://localhost:3000/api/geotags/' + number, {
+        method: 'DELETE'
+    });
+    deletedEvent.then(res => res.json()).then(data => {
+        console.log(data)
+        document.getElementById('editable-tag').style.display = 'none';
+        location.reload();
+    });
+});
+let editEvent = document.getElementById('edit-event');
+editEvent.addEventListener('click', (event) => {
+    let tags = JSON.parse(document.getElementById('mapView').dataset.tags);
+    let number = 0;
+    for (let i = 0; i < tags.length; i++) {
+        if (tags[i].name === document.getElementById('edit-name').value) {
+            number = i;
+        }
+    }
+
+    tags[number].name = document.getElementById('edit-name').value;
+    tags[number].hashtag = document.getElementById('edit-hash').value;
+    let deletedEvent = fetch('http://localhost:3000/api/geotags/' + number, {
+        method: 'PUT',
+        headers: { 'Content-type': 'application/json'},
+        body: JSON.stringify(tags[number])
+    });
+    deletedEvent.then(res => res.json()).then(data => {
+        console.log(data)
+        document.getElementById('editable-tag').style.display = 'none';
+        location.reload();
+    });
+})
 
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {

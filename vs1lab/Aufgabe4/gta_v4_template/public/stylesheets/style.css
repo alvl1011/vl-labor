@@ -298,6 +298,62 @@ footer span {
   font-weight: bold;
 }
 
+#editable-tag {
+  position: fixed;
+  display: none;
+  border: 1px solid black;
+  background: white;
+
+  width: 300px;
+  height: 195px;
+}
+
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px;
+}
+.edit-title {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px;
+  color: white;
+  background: darkgray;
+}
+
+.edit-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5px;
+}
+.delete-button {
+  padding: 2px 10px;
+  color: white;
+  border: 1px solid red;
+  background: red;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.edit-button {
+  padding: 5px 10px;
+  color: white;
+  background: #00b7ff;
+  border: 1px solid #00b7ff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.close-btn {
+  margin-left: 15px;
+  color: black;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
 /*  Media Queries */
 
 /* width auf 100% in browser*/

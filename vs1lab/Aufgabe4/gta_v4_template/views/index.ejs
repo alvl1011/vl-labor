@@ -168,12 +168,42 @@
           <div class="discovery__taglist col-4">
             <ul id="discovery__results">
               <% if (taglist !== undefined) taglist.forEach(function(gtag) {%>
-              <li>
+              <li onclick="onListClick(this.innerText.split(' '))">
                 <%= gtag.name %> ( <%= gtag.latitude %>,<%= gtag.longitude %>)
                 <%= gtag.hashtag %>
               </li>
               <% }); %>
             </ul>
+          </div>
+          <div id="editable-tag">
+              <div class="edit-title">
+                   <h3>Do you want to change tag?</h3>
+                   <span class="close-btn" style="position: center;" onclick="this.parentElement.parentElement.style.display='none';">&times;</span>
+              </div>
+              <form class="edit-form">
+                   <label for="name">Name:</label>
+                    <input
+                        id="edit-name"
+                        name="name"
+                        class="field"
+                        type="name"
+                        minlength="2"
+                        maxlength="10"
+                        pattern="([A-Z])\w+">
+                        <label for="hash">Hashtag:</label>
+                    <input
+                        id="edit-hash"
+                        name="hash"
+                        class="field"
+                        type="name"
+                        minlength="2"
+                        maxlength="10"
+                        pattern="([A-Z])\w+">
+              </form>
+              <div class="edit-buttons">
+                 <button id="delete-event" type="button" class="delete-button" onclick="">Delete</button>
+                 <button id="edit-event" type="button" class="edit-button" onclick="">Edit</button>
+              </div>
           </div>
 
           <div class="discovery__map col-8">
