@@ -96,7 +96,6 @@ async function setTags(response) {
     serverResponse.then(res => {
         let tags = res.taglist;
         let htmlString = '';
-        let i = 0;
 
         tags.forEach(tag => {
             htmlString +=
